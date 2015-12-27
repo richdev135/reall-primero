@@ -1,5 +1,5 @@
-﻿//var remoteurl = "http://demo10-reall.rhcloud.com/"
-var remoteurl = "http://127.0.0.1:8080/"
+﻿var remoteurl = "http://demo10-reall.rhcloud.com/"
+//var remoteurl = "http://127.0.0.1:8080/"
 
 var textclass = new textString("es");   // need to figure a way to not hard code this
 
