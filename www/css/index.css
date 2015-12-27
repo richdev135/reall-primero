@@ -1,2 +1,8 @@
-﻿body {
+﻿#login-button-wrapper img {
+    display:none;
 }
+
+.hidden-button {
+    display:none;
+}
+

@@ -1,5 +1,5 @@
-﻿var remoteurl = "http://demo10-reall.rhcloud.com/"
-//var remoteurl = "http://127.0.0.1:8080/"
+﻿//var remoteurl = "http://demo10-reall.rhcloud.com/"
+var remoteurl = "http://127.0.0.1:8080/"
 
 var textclass = new textString("es");   // need to figure a way to not hard code this
 
@@ -12,6 +12,9 @@ $("#testbutton").on("click", function (ev) {
     //            alert("it worked");
     var email = $("input#email").val();
     var passwd = $("input#pwd").val();
+
+    $("#login-button-wrapper img").show(300);
+    $("#login-button-wrapper button").hide(300);
     $.ajax({
         type: "POST",
         url: remoteurl + "applogin",
@@ -22,6 +25,8 @@ $("#testbutton").on("click", function (ev) {
         if (data.who === "invalid") {
             var msg = textclass.getText("invalid");
             alert(msg);
+            $("input#email").val("");
+            $("input#pwd").val("");
         }
         else {
             lstring = textclass.getText("welcome");
@@ -33,6 +38,10 @@ $("#testbutton").on("click", function (ev) {
         }
     }).error(function (err, status) {
         alert("fail");
+    }).complete(function(data, status){
+        // restore button
+        $("#login-button-wrapper img").hide(300);
+        $("#login-button-wrapper button").show(300);
     });
 });
 
@@ -51,6 +60,7 @@ function logout() {
 
 }
 
+// id of div that should wrap 
 function hidebutton(id) {
 
 }
