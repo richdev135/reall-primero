@@ -42,6 +42,7 @@ $("#testbutton").on("click", function (ev) {
         // restore button
         $("#login-button-wrapper img").hide(300);
         $("#login-button-wrapper button").show(300);
+        location.href = "patientform.html";
     });
 });
 
@@ -64,3 +65,16 @@ function logout() {
 function hidebutton(id) {
 
 }
+
+function fixiFrame() {
+    var sh = screen.height;
+    var wh = window.innerHeight;
+    iFrameContentHeight = document.getElementById('form-frame').contentDocument.body.offsetHeight;
+    document.getElementById('form-frame').style.height = wh + 'px';
+};
+
+
+function initPatientFormPage() {
+    fixiFrame();
+    $("#form-frame").focus();
+};
