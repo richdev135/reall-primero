@@ -1,7 +1,7 @@
 ﻿var remoteurl = "http://demo10-reall.rhcloud.com/"
 //var remoteurl = "http://127.0.0.1:8080/"
 
-var textclass = new textString("es");   // need to figure a way to not hard code this
+//var textclass = new textString("es");   // need to figure a way to not hard code this
 
 var init = function () {
     //// test code!!
@@ -23,13 +23,13 @@ $("#testbutton").on("click", function (ev) {
         data: { name: email, password: passwd }
     }).done(function (data, status) {
         if (data.who === "invalid") {
-            var msg = textclass.getText("invalid");
+            var msg = $("#invalidusererror").text();
             alert(msg);
             $("input#email").val("");
             $("input#pwd").val("");
         }
         else {
-            lstring = textclass.getText("welcome");
+            lstring = $("#welcometext").text();
             $("#welcome-text").html(lstring + ", " + data.who);
             $("#dbgmessage").html("Logged in");
 
@@ -42,8 +42,7 @@ $("#testbutton").on("click", function (ev) {
         // restore button
         $("#login-button-wrapper img").hide(300);
         $("#login-button-wrapper button").show(300);
-        location.href = "patientform.html";
-    });
+    })
 });
 
 function logout() {
@@ -58,7 +57,6 @@ function logout() {
     }).error(function (err, status) {
         alert("fail");
     });
-
 }
 
 // id of div that should wrap 
@@ -67,14 +65,15 @@ function hidebutton(id) {
 }
 
 function fixiFrame() {
-    var sh = screen.height;
-    var wh = window.innerHeight;
-    iFrameContentHeight = document.getElementById('form-frame').contentDocument.body.offsetHeight;
-    document.getElementById('form-frame').style.height = wh + 'px';
+    //var sh = screen.height;
+    //var wh = window.innerHeight;
+    //iFrameContentHeight = document.getElementById('form-frame').contentDocument.body.offsetHeight;
+    //document.getElementById('form-frame').style.height = wh + 'px';
 };
 
 
 function initPatientFormPage() {
-    fixiFrame();
-    $("#form-frame").focus();
+    $("#patient-register-form").validator().on("submit", function (ev) {
+        var n = 0;
+    });
 };
