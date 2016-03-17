@@ -2,9 +2,10 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ReferenceCachePath>C:\Users\rich\AppData\Local\Temp\reall-primero_refcache</ReferenceCachePath>
+    <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
-    <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>
+    <DebuggerFlavor>RippleNexus</DebuggerFlavor>
     <AndroidEmulatorID>AndroidDevice;Device</AndroidEmulatorID>
   </PropertyGroup>
 </Project>

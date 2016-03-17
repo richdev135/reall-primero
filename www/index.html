@@ -45,8 +45,7 @@
         <div id="dbgmessage">Nothing yet</div>
     </div>
 
-    <div id="patientform" style="display:none">
-        Patient form goes here....
+    <div  id="patientform" ng-controller="patientFormController" style="display:none">
         <!-- need to capture
             firstname
             lastname1
@@ -59,8 +58,40 @@
             updateddate
             createdby
             updatedby
-
+            
         -->
+        <!-- FORM -->
+        <form ng-submit="processPatientForm()">
+            <!-- NAME -->
+            <div id="name-group-name" class="form-group">
+                <label xlate="name"></label>
+                <input type="text" name="name" class="form-control" placeholder="" ng-model="formData.name">
+                <span class="help-block"></span>
+            </div>
+
+            <div id="name-group-last1" class="form-group">
+                <label xlate="lastname1"></label>
+                <input type="text" name="name" class="form-control" placeholder="" ng-model="formData.lastname1">
+                <span class="help-block"></span>
+            </div>
+
+            <div id="name-group-last2" class="form-group">
+                <label xlate="lastname2"></label>
+                <input type="text" name="name" class="form-control" placeholder="" ng-model="formData.lastname2">
+                <span class="help-block"></span>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="btn btn-success btn-lg btn-block">
+                <span class="glyphicon glyphicon-flash"></span> Submit!
+            </button>
+        </form>
+
+        <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED -->
+<pre>
+    {{ formData }}
+</pre>
+
     </div>
     <ion-side-menus enable-menu-with-back-views="false">
 

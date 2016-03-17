@@ -2,6 +2,21 @@
     .value("lang", "es");
 
 
+reallapp.controller("patientFormController", function($scope, $http) {
+    $scope.formData = {};
+    $scope.processPatientForm = function () {
+        var paramvals = JSON.stringify($scope.formData);
+        var url = remoteurl + "createPatient/" + "?callback=JSON_CALLBACK";
+        $http.jsonp(url, {params : $scope.formData}).then(function (response) {
+            var w = response;
+        });
+
+    };
+});
+
+///
+/// Translation service in Anglular
+///
 reallapp.directive('xlate', function (localizeService, lang) {
 //    alert(lang);
     function lnk(scope, elem, attr) {
@@ -40,6 +55,18 @@ reallapp.service('localizeService', function () {
         'email address': {
             'en-us': 'email address',
             'es': 'Correo electronico'
+        },
+        'name': {
+            'en-us': 'Name',
+            'es' : 'Nombre'
+        },
+        'lastname1': {
+            'en-us': 'Last name',
+            'es': 'Appellido 1'
+        },
+        'lastname2': {
+            'en-us': 'Last name 2',
+            'es': 'Appellido 2'
         }
     };
 
@@ -49,4 +76,6 @@ reallapp.service('localizeService', function () {
         }
     }
 });
+///////////
+
 
