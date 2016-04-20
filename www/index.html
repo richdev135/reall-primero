@@ -39,13 +39,17 @@
         </form>
 
         <div id="login-button-wrapper">
-            <button id="testbutton" class="btn btn-default" value="Test">Log in</button>
+            <button id="loginbutton" class="btn btn-default" value="Test">Log in</button>
             <img alt="waiting for login" src="images/wait-30x30.gif" />
         </div>
         <div id="dbgmessage">Nothing yet</div>
     </div>
 
     <div  id="patientform" ng-controller="patientFormController" style="display:none">
+        <div id="listpatients-button-wrapper">
+            <button id="listpatientsbutton" class="btn btn-default" ng-click="listPatients()" ></button>
+            <img alt="waiting for list" src="images/wait-30x30.gif" />
+        </div>
         <!-- need to capture
             firstname
             lastname1
@@ -62,7 +66,7 @@
         -->
         <!-- FORM -->
         <form ng-submit="processPatientForm()">
-            <!-- NAME -->
+            <input type="hidden" name="username" class="form-control" ng-model="formData.username">
             <div id="name-group-name" class="form-group">
                 <label xlate="name"></label>
                 <input type="text" name="name" class="form-control" placeholder="" ng-model="formData.name">
@@ -71,21 +75,29 @@
 
             <div id="name-group-last1" class="form-group">
                 <label xlate="lastname1"></label>
-                <input type="text" name="name" class="form-control" placeholder="" ng-model="formData.lastname1">
+                <input type="text" name="lastname1" class="form-control" placeholder="" ng-model="formData.lastname1">
                 <span class="help-block"></span>
             </div>
 
             <div id="name-group-last2" class="form-group">
                 <label xlate="lastname2"></label>
-                <input type="text" name="name" class="form-control" placeholder="" ng-model="formData.lastname2">
+                <input type="text" name="lastname2" class="form-control" placeholder="" ng-model="formData.lastname2">
+                <span class="help-block"></span>
+            </div>
+            <div id="address" class="form-group">
+                <label xlate="address"></label>
+                <input type="text" name="address" class="form-control" placeholder="" ng-model="formData.address1">
                 <span class="help-block"></span>
             </div>
 
             <!-- SUBMIT BUTTON -->
             <button type="submit" class="btn btn-success btn-lg btn-block">
-                <span class="glyphicon glyphicon-flash"></span> Submit!
+                <span class="glyphicon glyphicon-flash" xlate="submit"></span>
             </button>
         </form>
+        <ul>
+            <li ng-repeat="patient in patients">{{patient.name}} {{patient.lastname1}} {{patient.lastname2}}</li>
+        </ul>
 
         <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED -->
 <pre>
@@ -118,11 +130,7 @@
     <script src="debug/app.js"></script>
     <!-- endinject -->
     <script src="script.js"></script>
+    <script src="scripts/index.js"></script>
 
-    <script type="text/javascript">
-        $().ready(function () {
-            logout();
-        });
-    </script>
 </body>
 </html>

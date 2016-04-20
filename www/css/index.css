@@ -10,3 +10,15 @@
     position:absolute;
     top:1px;
 }
+
+#listpatientsbutton {
+    background-image:url("../images/findpatient.jpg");
+    background-repeat:no-repeat;
+    background-position:center;
+    height:3em;
+    width:4em;
+}
+
+#listpatients-button-wrapper img {
+    display:none;
+}

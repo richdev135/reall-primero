@@ -4,14 +4,59 @@
 
 reallapp.controller("patientFormController", function($scope, $http) {
     $scope.formData = {};
+    $scope.patients = [];
+
     $scope.processPatientForm = function () {
-        var paramvals = JSON.stringify($scope.formData);
-        var url = remoteurl + "createPatient/" + "?callback=JSON_CALLBACK";
-        $http.jsonp(url, {params : $scope.formData}).then(function (response) {
-            var w = response;
-        });
+        //        $scope.formData.username = $($("input[name=username]")).val();
+        setTimeout(function () {
+            $scope.$apply();
+            var paramvals = JSON.stringify($scope.formData);
+            var url = remoteurl + "createPatient/" + "?callback=JSON_CALLBACK";
+            $http.jsonp(url, { params: $scope.formData }).then(function (response) {
+                if (response.data.result == "saved") {
+                    alert("Patient created");
+                }
+                else {
+                    alert("Oops - error");
+                }
+            });
+        },100);
 
     };
+
+    $scope.listPatients = function() {
+        var url = remoteurl + "getAllPatients/" + "?callback=JSON_CALLBACK";
+        $http.jsonp(url).then(function (response) {
+            setTimeout(function () {
+                $scope.patients = response.data;
+                $("#patientform form").hide();
+//                angular.forEach(response.data, function (value, key) {
+//                });
+                $scope.$apply();
+            }, 100);
+            //else {
+            //    alert("Oops - error");
+            //}
+        });
+    };
+
+
+});
+
+
+reallapp.directive('userName',function(){
+    function doupdate(scope, elem, attr) {
+        scope.$apply();
+    };
+
+    return {
+        restrict: 'E',
+        template: '<input type="text" name="username" class="form-control" ng-model="formData.username">',
+        scope: {
+            username: "=value"
+        },
+        link: doupdate()
+    }
 });
 
 ///
@@ -67,7 +112,16 @@ reallapp.service('localizeService', function () {
         'lastname2': {
             'en-us': 'Last name 2',
             'es': 'Appellido 2'
+        },
+        'address': {
+            'en-us': 'Address',
+            'es': 'Direcciones'
+        },
+        'submit': {
+            'en-us': 'Submit',
+            'es' : 'Enviar'
         }
+
     };
 
     return {

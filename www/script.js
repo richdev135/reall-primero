@@ -1,14 +1,8 @@
-﻿//var remoteurl = "http://demo10-reall.rhcloud.com/"
-var remoteurl = "http://127.0.0.1:8080/"
+﻿var remoteurl = "http://demo10-reall.rhcloud.com/"
+//var remoteurl = "http://127.0.0.1:8080/"
 
-//var textclass = new textString("es");   // need to figure a way to not hard code this
 
-var init = function () {
-    //// test code!!
-    //var result = textclass.getText("welcome");
-};
-
-$("#testbutton").on("click", function (ev) {
+$("#loginbutton").on("click", function (ev) {
     //            alert("it worked");
     var email = $("input#email").val();
     var passwd = $("input#pwd").val();
@@ -35,6 +29,10 @@ $("#testbutton").on("click", function (ev) {
 
             $("#login-wrapper").hide(200);
             $("#patientform").show(200);
+            $("input[name=username]").val(data.who);
+            setTimeout(function () {
+                updateUsername();
+            }, 100);
         }
     }).error(function (err, status) {
         alert("fail");
@@ -45,6 +43,11 @@ $("#testbutton").on("click", function (ev) {
     })
 });
 
+function updateUsername() {
+    var scope = angular.element($("input[name=username]")).scope();
+    scope.formData.username = $("input[name=username]").val();   // I'm not sure why Angular isn't doing this, so here's a hack.  :-)
+};
+
 function logout() {
     $.ajax({
         type: "POST",
@@ -52,7 +55,6 @@ function logout() {
         dataType: "jsonp",
         jsonpCallback: "cb",
     }).done(function (data, status) {
-
         $("#dbgmessage").html("Logged out");
     }).error(function (err, status) {
         alert("fail");
@@ -63,6 +65,11 @@ function logout() {
 function hidebutton(id) {
 
 }
+
+$("#address input").focus(function (ev) {
+    alert("focus");
+});
+
 
 function fixiFrame() {
     //var sh = screen.height;
@@ -77,3 +84,5 @@ function initPatientFormPage() {
         var n = 0;
     });
 };
+
+
